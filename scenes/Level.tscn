@@ -1,9 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw18esvuvx2fc"]
+[gd_scene load_steps=11 format=3 uid="uid://bw18esvuvx2fc"]
 
 [ext_resource type="Texture2D" uid="uid://mtxv2g05ebbx" path="res://graphics/background-placeholder.svg" id="1_76bb8"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_bpxml"]
 [ext_resource type="Texture2D" uid="uid://dp8lk1nctvhhh" path="res://graphics/fortress-placeholder.svg" id="2_1m6ay"]
+[ext_resource type="PackedScene" uid="uid://mwbq668dofg3" path="res://scenes/player.tscn" id="3_4n63r"]
+[ext_resource type="PackedScene" uid="uid://f25ldhy432y" path="res://scenes/inventory.tscn" id="4_2gjpi"]
+[ext_resource type="Texture2D" uid="uid://djvoua6do1c0t" path="res://graphics/controller-placeholder.svg" id="5_mm1qe"]
+[ext_resource type="Texture2D" uid="uid://cwibatfuxaoy1" path="res://graphics/button-placeholder.svg" id="6_dqs04"]
+[ext_resource type="Script" path="res://scenes/slider.gd" id="6_qy2ug"]
+[ext_resource type="AudioStream" uid="uid://dja22g1h5tlyi" path="res://audio/fail-234710.mp3" id="8_gvbpx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t1qo"]
+size = Vector2(141, 97)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_bpxml")
 
 [node name="Background-placeholder" type="Sprite2D" parent="."]
 position = Vector2(575, 321.75)
@@ -13,3 +24,59 @@ texture = ExtResource("1_76bb8")
 [node name="Fortress-placeholder" type="Sprite2D" parent="."]
 position = Vector2(866, 412)
 texture = ExtResource("2_1m6ay")
+
+[node name="Player" parent="." instance=ExtResource("3_4n63r")]
+position = Vector2(-25, 261)
+
+[node name="Inventory" parent="." instance=ExtResource("4_2gjpi")]
+offset_left = 785.0
+offset_top = 310.0
+offset_right = 785.0
+offset_bottom = 310.0
+
+[node name="CatapultControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Controller-placeholder" type="Sprite2D" parent="CatapultControl"]
+position = Vector2(68, 209)
+texture = ExtResource("5_mm1qe")
+
+[node name="Slider" type="VSlider" parent="CatapultControl"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 114.0
+offset_right = 95.0
+offset_bottom = 308.0
+script = ExtResource("6_qy2ug")
+
+[node name="LaunchButton" type="Button" parent="CatapultControl"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 315.0
+offset_right = 127.0
+offset_bottom = 398.0
+scale = Vector2(0.6, 0.6)
+icon = ExtResource("6_dqs04")
+
+[node name="GoalArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalArea"]
+position = Vector2(873.5, 168.5)
+shape = SubResource("RectangleShape2D_3t1qo")
+
+[node name="FailArea" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FailArea"]
+polygon = PackedVector2Array(623, 515, 633, 468, 738, 413, 752, 222, 949, 221, 954, 30, 1121, 30, 1128, 224, 1130, 628, 776, 626, 33, 621, 32, 573, 633, 571)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_gvbpx")
+
+[connection signal="pressed" from="CatapultControl/LaunchButton" to="Player" method="_on_launch_button_pressed"]
+[connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]
+[connection signal="body_entered" from="FailArea" to="." method="_on_fail_area_body_entered"]

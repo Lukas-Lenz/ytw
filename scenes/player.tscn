@@ -1,20 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://mwbq668dofg3"]
 
-[ext_resource type="Texture2D" uid="uid://jnfch3mnh021" path="res://graphics/player-flying-placeholder.svg" id="1_kmsw4"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_kuffc"]
+[ext_resource type="Texture2D" uid="uid://cuvieklx4daxn" path="res://graphics/player-catapult-placeholder.svg" id="2_wgmrx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kvn0i"]
 radius = 36.8368
 height = 193.168
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Bauer" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_kuffc")
 
-[node name="Player-flying-placeholder" type="Sprite2D" parent="."]
+[node name="BauerSprite" type="Sprite2D" parent="."]
 position = Vector2(213, 239)
-texture = ExtResource("1_kmsw4")
+texture = ExtResource("2_wgmrx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BauerShape" type="CollisionShape2D" parent="."]
 position = Vector2(245, 246)
 rotation = 1.14319
 shape = SubResource("CapsuleShape2D_kvn0i")
