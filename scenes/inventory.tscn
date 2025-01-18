@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://f25ldhy432y"]
+
+[ext_resource type="Texture2D" uid="uid://bemgalt31iooj" path="res://graphics/inventory-placeholder.svg" id="1_a41vb"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 360.0
+offset_bottom = 334.0
+texture = ExtResource("1_a41vb")
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 6.0
+max_columns = 3
+same_column_width = true
+fixed_column_width = 64
+icon_mode = 0
+fixed_icon_size = Vector2i(64, 64)

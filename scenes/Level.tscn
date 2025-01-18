@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw18esvuvx2fc"]
+
+[ext_resource type="Texture2D" uid="uid://mtxv2g05ebbx" path="res://graphics/background-placeholder.svg" id="1_76bb8"]
+[ext_resource type="Texture2D" uid="uid://dp8lk1nctvhhh" path="res://graphics/fortress-placeholder.svg" id="2_1m6ay"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Background-placeholder" type="Sprite2D" parent="."]
+position = Vector2(575, 321.75)
+scale = Vector2(1.14229, 1.07815)
+texture = ExtResource("1_76bb8")
+
+[node name="Fortress-placeholder" type="Sprite2D" parent="."]
+position = Vector2(866, 412)
+texture = ExtResource("2_1m6ay")
