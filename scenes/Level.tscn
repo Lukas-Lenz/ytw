@@ -1,14 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bw18esvuvx2fc"]
+[gd_scene load_steps=14 format=3 uid="uid://bw18esvuvx2fc"]
 
-[ext_resource type="Texture2D" uid="uid://mtxv2g05ebbx" path="res://graphics/background-placeholder.svg" id="1_76bb8"]
-[ext_resource type="Script" path="res://scenes/level.gd" id="1_bpxml"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_bpxml"]
 [ext_resource type="Texture2D" uid="uid://dp8lk1nctvhhh" path="res://graphics/fortress-placeholder.svg" id="2_1m6ay"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="2_4v8j0"]
+[ext_resource type="Texture2D" uid="uid://b5b5qvifid6tn" path="res://graphics/bg-long-placeholder.svg" id="2_h1hkj"]
 [ext_resource type="PackedScene" uid="uid://mwbq668dofg3" path="res://scenes/player.tscn" id="3_4n63r"]
 [ext_resource type="PackedScene" uid="uid://f25ldhy432y" path="res://scenes/inventory.tscn" id="4_2gjpi"]
 [ext_resource type="Texture2D" uid="uid://djvoua6do1c0t" path="res://graphics/controller-placeholder.svg" id="5_mm1qe"]
 [ext_resource type="Texture2D" uid="uid://cwibatfuxaoy1" path="res://graphics/button-placeholder.svg" id="6_dqs04"]
-[ext_resource type="Script" path="res://scenes/slider.gd" id="6_qy2ug"]
+[ext_resource type="Script" path="res://scripts/slider.gd" id="6_qy2ug"]
 [ext_resource type="AudioStream" uid="uid://dja22g1h5tlyi" path="res://audio/fail-234710.mp3" id="8_gvbpx"]
+[ext_resource type="Texture2D" uid="uid://dwam8mfr1mcdr" path="res://graphics/Unbenannt-2025-01-19-1703.svg" id="11_yyj7q"]
+[ext_resource type="Texture2D" uid="uid://br6rohmbr7dfl" path="res://graphics/lootcrate-placeholder.svg" id="12_s8j8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t1qo"]
 size = Vector2(141, 97)
@@ -16,10 +19,18 @@ size = Vector2(141, 97)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bpxml")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory" parent="CanvasLayer" instance=ExtResource("4_2gjpi")]
+offset_left = 772.0
+offset_top = 294.0
+offset_right = 772.0
+offset_bottom = 294.0
+
 [node name="Background-placeholder" type="Sprite2D" parent="."]
-position = Vector2(575, 321.75)
+position = Vector2(284, 319)
 scale = Vector2(1.14229, 1.07815)
-texture = ExtResource("1_76bb8")
+texture = ExtResource("2_h1hkj")
 
 [node name="Fortress-placeholder" type="Sprite2D" parent="."]
 position = Vector2(866, 412)
@@ -27,12 +38,6 @@ texture = ExtResource("2_1m6ay")
 
 [node name="Player" parent="." instance=ExtResource("3_4n63r")]
 position = Vector2(-25, 261)
-
-[node name="Inventory" parent="." instance=ExtResource("4_2gjpi")]
-offset_left = 785.0
-offset_top = 310.0
-offset_right = 785.0
-offset_bottom = 310.0
 
 [node name="CatapultControl" type="Control" parent="."]
 layout_mode = 3
@@ -76,6 +81,21 @@ polygon = PackedVector2Array(623, 515, 633, 468, 738, 413, 752, 222, 949, 221, 9
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_gvbpx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+limit_left = -200
+limit_right = 250
+editor_draw_limits = true
+script = ExtResource("2_4v8j0")
+
+[node name="Unbenannt-2025-01-19-1703" type="Sprite2D" parent="."]
+position = Vector2(-577, 418)
+texture = ExtResource("11_yyj7q")
+
+[node name="Lootcrate-placeholder" type="Sprite2D" parent="."]
+position = Vector2(-363, 522)
+texture = ExtResource("12_s8j8p")
 
 [connection signal="pressed" from="CatapultControl/LaunchButton" to="Player" method="_on_launch_button_pressed"]
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]

@@ -1,4 +1,8 @@
-extends AudioStreamPlayer
+extends TextureRect
+class_name Item
+
+@export var dimensions : Vector2i
+@export var weight : float
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,12 +13,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func _on_level_failed() -> void:
-	if playing:
-		print("is playing")
-		return
-#	stream = load("res://audio/fail-234710.mp3")
-	print("on level failed called")
-	stream.instantiate_playback()
