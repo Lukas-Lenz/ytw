@@ -5,9 +5,13 @@ const SIZE = 3
 var items : Array
 
 func _ready():
+	items = []
+#	items.resize(SIZE)
 	for i in SIZE:
+		items.append([])
+#		items[i].resize(SIZE)
 		for j in SIZE:
-			items[i][j] = null
+			items[i].append(null)
 
 func item_at_spot(pos : Vector2i):
 	if pos.x < 0 || pos.x >= SIZE || pos.y < 0 || pos.y > SIZE:
@@ -15,7 +19,7 @@ func item_at_spot(pos : Vector2i):
 	else:
 		return items[pos.x][pos.y]
 
-func add(item: Item, pos: Vector2i) -> bool:
+#func add(item: Item, pos: Vector2i) -> bool:
 	
 	# position - position + dimensions must be free
 	
@@ -26,15 +30,15 @@ func add(item: Item, pos: Vector2i) -> bool:
 #	pass
 	
 
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+#func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	
-	if !(data is Item):
-		return false 
+#	if !(data is Item):
+#		return false 
 	
-	data.dimensions
-	get_placement()
+#	data.dimensions
+#	get_placement()
 	
-	object_dimension = data.dimensions
+#	object_dimension = data.dimensions
 	
 #	pass
 	
@@ -48,10 +52,6 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 #	if event.is_action_released("mouse_left"):
 		
 #		accept_event()
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

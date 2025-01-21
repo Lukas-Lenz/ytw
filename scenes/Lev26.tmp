@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bw18esvuvx2fc"]
+[gd_scene load_steps=16 format=3 uid="uid://bw18esvuvx2fc"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_bpxml"]
 [ext_resource type="Texture2D" uid="uid://dp8lk1nctvhhh" path="res://graphics/fortress-placeholder.svg" id="2_1m6ay"]
@@ -17,9 +17,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t1qo"]
 size = Vector2(141, 97)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cikin"]
-size = Vector2(126, 159)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_bpxml")
@@ -99,22 +96,12 @@ position = Vector2(-577, 418)
 texture = ExtResource("11_yyj7q")
 
 [node name="LootCrate" parent="." instance=ExtResource("12_6jw0q")]
-position = Vector2(-313, 532)
 itemList = [{
 "item_name": "Wine",
 "texture": ExtResource("13_6ohsu")
 }, null]
 texture = ExtResource("12_s8j8p")
 
-[node name="Sprite2D" parent="LootCrate" index="0"]
-texture = ExtResource("12_s8j8p")
-
-[node name="Area2D" parent="LootCrate" index="1"]
-position = Vector2(-1, 8.5)
-shape = SubResource("RectangleShape2D_cikin")
-
 [connection signal="pressed" from="CatapultControl/LaunchButton" to="Player" method="_on_launch_button_pressed"]
 [connection signal="body_entered" from="GoalArea" to="." method="_on_goal_area_body_entered"]
 [connection signal="body_entered" from="FailArea" to="." method="_on_fail_area_body_entered"]
-
-[editable path="LootCrate"]
